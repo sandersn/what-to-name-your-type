@@ -28,7 +28,8 @@ for (const dir of fs.readdirSync('../../DefinitelyTyped/types')) {
     process.stderr.write(i % 100 === 0 ? ('\n'+types.size) : '.')
 }
 console.log("{")
-for (const t of Array.from(types).sort(([_x, i], [_y, j]) => j- i)) {
-    console.log(JSON.stringify(t[0]) + " : " + t[1] + ",")
-}
+console.log(Array.from(types)
+            .sort(([_x, i], [_y, j]) => j- i)
+            .map(([k,v]) => "  " + JSON.stringify(k) + ": " + v)
+            .join(",\n"))
 console.log("}")
